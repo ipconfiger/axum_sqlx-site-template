@@ -1,4 +1,4 @@
-use sqlx::{PgPool, Postgres};
+use sqlx::{Error, PgPool, Postgres};
 use sqlx_struct_enhanced::EnhancedCrud;
 use crate::modals::TestTb;
 use redis::{AsyncCommands};
@@ -54,8 +54,8 @@ pub struct TestService {
  }
 
 impl TestService {
-    pub async fn get_test_tb(&self) -> Vec<TestTb> {
-        sqlx::query_as::<Postgres, TestTb>("select * from test_tb").fetch_all(&(self.ctx.db)).await.unwrap().to_vec()
+    pub async fn get_test_tb(&self) -> Result<Vec<TestTb>, Error> {
+        Ok(sqlx::query_as::<Postgres, TestTb>("select * from test_tb").fetch_all(&(self.ctx.db)).await?.to_vec())
     }
 
     pub async fn new_test_tb(&self, name: &str, ts: i32) {

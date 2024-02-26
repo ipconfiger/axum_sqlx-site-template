@@ -1,6 +1,6 @@
 use sqlx::FromRow;
 use sqlx_struct_enhanced::{EnhancedCrud, Scheme};
-use sqlx::query::Query;
+use sqlx::query::{Query, QueryAs};
 use sqlx::Postgres;
 use sqlx::database::HasArguments;
 
