@@ -2,6 +2,7 @@ use std::net::SocketAddr;
 use std::time::Duration;
 use crate::conf::Configuration;
 use axum::{extract::{Json, State, path::Path, Query}, Router, routing::{post, get}, response::IntoResponse};
+use axum::response::Html;
 use serde_json::json;
 use sqlx::postgres::PgPoolOptions;
 use crate::handlers::test_db;
@@ -20,6 +21,7 @@ pub async fn start_serve(cfg: &Configuration) {
 
     let app = Router::new()
         .route("/status", get(status))
+        .route("/404", get(not_found))
         .route("/test/test_tbs", get(test_db))
         .with_state(state);
 
@@ -38,6 +40,9 @@ pub async fn start_serve(cfg: &Configuration) {
     }
 }
 
+async fn not_found() -> Html<String> {
+    Html(include_str!("../templates/404.html").to_string())
+}
 async fn status()->impl IntoResponse {
     Json(json!({"status": "it works!"}))
 }

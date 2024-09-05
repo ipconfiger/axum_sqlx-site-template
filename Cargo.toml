@@ -6,17 +6,17 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-sqlx = { version = "0.7.3", features = ["tls-rustls", "runtime-tokio", "postgres", "json"] }
+sqlx = { version = "0.7.3", features = ["tls-rustls", "runtime-tokio", "postgres", "json", "uuid", "bigdecimal"] }
 sqlx_struct_enhanced = { version = "*", path = "/Users/alex/Projects/workspace/sqlx_struct_enhanced", features = ["postgres"] }
-axum = "0.6.19"
-clap = "3.2.6"
-serde = { version = "1.0", features = ["derive"] }
-serde_json = "1.0"
-tokio = { version = "1", features = ["full"] }
-futures = "0.3"
+axum = "0.6.20"
+clap = "3.2.25"
+serde = { version = "1.0.196", features = ["derive"] }
+serde_json = "1.0.113"
+tokio = { version = "1.36.0", features = ["full"] }
+futures = "0.3.30"
 redis = { version = "0.23", features = ["tokio-comp"] }
 reqwest = {version = "0.11.24", default-features = false, features = ["rustls-tls", "serde_json"]}
-chrono = "0.4.34"
+chrono = "0.4.38"
 axum-auth = "0.7"
 http = "0.2.11"
 sha2 = "0.10.8"
@@ -26,3 +26,4 @@ hex = "0.4.3"
 log = "0.4.20"
 simple_logger = "4.3.3"
 rand = "0.8.5"
+uuid = { version = "1.10.0", features = ["v4", "fast-rng"] }

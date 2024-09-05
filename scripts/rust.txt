@@ -6,12 +6,10 @@ use sqlx::database::HasArguments;
 use uuid::Uuid;
 use sqlx::types::BigDecimal;
 
-
+{% for entity in entities %}
 #[derive(Debug, Clone, FromRow, EnhancedCrud)]
-pub struct TestTb {
-    pub id: Uuid,
-    pub name: String,
-    pub ts: i32,
-    
+pub struct {{ entity.name }} {
+    {% for fd in entity.fields %}pub {{fd.name}}: {{ fd.types.rust.name }},
+    {% endfor %}
 }
-
+{% endfor %}

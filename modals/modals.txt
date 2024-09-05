@@ -1,0 +1,13 @@
+TestTb:
+  # 测试表
+  @pg uuid PRIMARY KEY
+  @rust Uuid
+  id:  编号
+
+  @pg varchar(32)
+  @rust String
+  name: 名字
+
+  @pg int
+  @rust i32
+  ts: 时间戳
